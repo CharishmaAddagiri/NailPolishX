@@ -658,6 +658,36 @@ body.dark-mode button {
 #contactForm button:hover {
   background: #e91e63;
 }
+/* Mobile responsiveness fix */
+* {
+  box-sizing: border-box;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container, .section, .product-card {
+  width: 100%;
+  padding: 0 10px; /* optional padding */
+}
+
+@media (max-width: 768px) {
+  .navbar, .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .product-card {
+    margin-bottom: 15px;
+  }
+}
 
 </style>
 </head>
