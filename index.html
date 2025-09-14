@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <title>NailPolishX - Premium Nail Products</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    .stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+#chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.3s;
+}
+
+#chat-widget:hover {
+  transform: scale(1.1);
+}
+
+#chat-widget img {
+  width: 30px;
+  height: 30px;
+}
+
+
+.stats div {
+  text-align: center;
+}
+
+    body {
+      margin: 0; 
+      font-family: 'Montserrat', sans-serif;
+      background: #fdf6f0;
+      color: #4f3947;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #b76ba3;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #7b3f6d;
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: sticky;
+      top: 0;
+      background: white;
+      padding: 1rem 3rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(183,107,163,0.2);
+      z-index: 999;
+
+
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      color: #9b6ca4;
+      user-select: none;
+      cursor: default;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      position: relative;
+    }
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #b76ba3;
+      transition: width 0.3s;
+    }
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    section#hero {
+      background: linear-gradient(90deg, #fcefee 0%, #fce9f2 80%);
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+    }
+    section#hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #6a256d;
+      margin: 2rem 0 1rem;
+    }
+    section#hero .tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      color: #7b3f6d;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+.cta-btn {
+  position: relative;
+  background: linear-gradient(135deg, #b76ba3, #9b6ca4);
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.9rem 2.2rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(183, 107, 163, 0.25);
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Hover animation + lift */
+.cta-btn:hover {
+  background: linear-gradient(135deg, #9b6ca4, #7b3f6d);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 30px rgba(123, 63, 109, 0.35);
+}
+.hero-text, .hero-cta, footer {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hero-text.in-view, .hero-cta.in-view, footer.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Sparkling glow effect */
+.cta-btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+  animation: shimmer 2.5s infinite;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+}
+/* Dark Mode Styles */
+body.dark-mode {
+  background: #1a1a1a;
+  color: #f0e5f2;
+}
+
+body.dark-mode nav,
+body.dark-mode footer {
+  background: #2c1f3a;
+}
+
+body.dark-mode button {
+  background: #b76ba3;
+  color: #fff;
+}
+
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { transform: rotate(0deg) translateX(-100%) scale(1); opacity: 0.2; }
+  50% { transform: rotate(45deg) translateX(50%) scale(1.2); opacity: 0.4; }
+  100% { transform: rotate(90deg) translateX(100%) scale(1); opacity: 0.2; }
+}
+
+
+    /* Bottle wrapper */
+    .bottle-wrapper {
+      position: relative;
+      max-width: 320px;
+      margin: auto;
+      perspective: 800px;
+      cursor: pointer;
+    }
+    .bottle-image {
+      width: 100%;
+      border-radius: 32px;
+      box-shadow: 0 35px 65px rgba(183, 107, 163, 0.2),
+                  0 12px 22px rgba(183, 107, 163, 0.14);
+      position: relative;
+      z-index: 1;
+    }
+    .cap-image {
+      width: 120px;
+      position: absolute;
+      top: -45px;
+      left: 40%;
+      transform: translateX(-60%) var(--rotate, rotate(0deg));
+      transition: transform 0.3s ease, filter 0.3s ease;
+      user-select: none;
+      z-index: 2;
+      filter: drop-shadow(0 5px 10px rgba(143, 48, 101, 0.3));
+    }
+    .bottle-wrapper:hover .cap-image {
+      transform: translate(calc(-60% - 10px), -10px) var(--rotate, rotate(0deg));
+      filter: drop-shadow(0 8px 15px rgba(143, 48, 101, 0.5));
+    }
+
+    /* Features Section */
+    section#features {
+      background: white;
+      max-width: 1100px;
+      margin: 4rem auto 6rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      text-align: center;
+    }
+    .feature-card {
+      background: #fcefee;
+      padding: 2.8rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(183, 107, 163, 0.15);
+      cursor: default;
+      opacity: 0;
+      transform: translateY(40px) scale(0.85);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+    }
+    .feature-card.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      box-shadow: 0 15px 40px rgba(183, 107, 163, 0.3);
+    }
+    .feature-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 25px 50px rgba(183, 107, 163, 0.4);
+    }
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #b76ba3;
+    }
+    .feature-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #7b3f6d;
+    }
+    .feature-desc {
+      font-size: 1rem;
+      color: #8f617e;
+      line-height: 1.5;
+    }
+
+    /* Showcase */
+    section#showcase {
+      max-width: 1140px;
+      margin: 4rem auto 6rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .product-card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 14px 35px rgba(183, 107, 163, 0.18);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      opacity: 0; /* Added for fade-in */
+      transform: translateY(40px) scale(0.85); /* Added for fade-in */
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+    }
+    .product-card.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .product-card:hover {
+      transform: scale(1.07);
+      box-shadow: 0 22px 46px rgba(183, 107, 163, 0.3);
+    }
+    .product-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      filter: drop-shadow(0 5px 10px rgba(183, 107, 163, 0.25));
+      transition: filter 0.3s ease;
+    }
+    .product-description {
+      padding: 1rem 1.5rem 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #945f90;
+      text-align: center;
+      flex-grow: 1;
+    }
+    .product-card {
+  position: relative;
+  overflow: hidden;
+}
+.faq-section {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  background: #f8f8f8;
+  color: #333;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+#scrollToTop {
+  position: fixed;
+  bottom: 80px; /* above WhatsApp button */
+  right: 20px;
+  display: none;
+  background: #ff4081;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+
+
+
+.faq-question:hover {
+  background: #eee;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0 15px;
+  font-size: 15px;
+  color: #555;
+}
+
+.faq-answer p {
+  margin: 10px 0;
+}
+
+.product-card:hover .color-swatch {
+  display: block;
+}
+
+    .horizontal-scroll {
+  display: flex;          /* Align items in a row */
+  overflow-x: auto;       /* Enable horizontal scroll */
+  scroll-behavior: smooth;
+  gap: 1rem;              /* Space between items */
+  padding-bottom: 1rem;   /* optional, avoids scrollbar overlap */
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height: 8px;            /* customize scrollbar height */
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background-color: #b76ba3;
+  border-radius: 4px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track {
+  background-color: #f0e5f2;
+}
+.testimonial-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 1rem 2rem;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+}
+.testimonial-carousel::-webkit-scrollbar { display: none; }
+
+.testimonial-card {
+  flex: 0 0 auto;
+  width: 280px;
+  background: #fcefee;
+  padding: 2rem;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(183,107,163,0.15);
+  text-align: center;
+}
+.testimonial-card img {
+  width: 60px; height: 60px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover;
+}
+.testimonial-card h3 { color:#7b3f6d; font-size:1.1rem; margin-bottom:0.5rem; }
+.testimonial-card p { color:#8f617e; font-size:0.95rem; line-height:1.5; }
+#heroText {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff4081;
+  text-align: center;
+  margin-bottom: 30px; 
+  margin-top: 40px; 
+}
+.discount-bar {
+  background: #ff4d4d;
+  color: white;
+  text-align: center;
+  padding: 10px 40px;
+  font-size: 16px;
+  font-weight: bold;
+  position: fixed;   /* fixed at very top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+}
+
+.discount-bar .close-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+}
+/* Footer */
+    footer {
+      background-color: #9b6ca4;
+      color: #fdf6f0;
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      border-top-left-radius: 3rem;
+      border-top-right-radius: 3rem;
+    }
+    footer nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      padding: 0;
+      margin: 0;
+    }
+    footer nav ul li a {
+      color: #f7ebf6;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    footer nav ul li a:hover {
+      color: #d4a4d0;
+    }
+    footer .contact-info {
+      max-width: 300px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    footer .social-icons {
+      display: flex;
+      gap: 1rem;
+    }
+    footer .social-icons a {
+      background: #b76ba3;
+      color: white;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    footer .social-icons a:hover {
+      background: #7b3f6d;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      nav ul {
+        gap: 1rem;
+      }
+      section#features {
+        grid-template-columns: 1fr 1fr;
+        padding: 2rem 1rem;
+      }
+      section#showcase {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
+      }
+      footer {
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+      footer nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      footer .contact-info {
+        max-width: 100%;
+      }
+      footer .social-icons {
+        justify-content: center;
+      }
+    }
+    @media (max-width: 450px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      section#features {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+      }
+    }
+/* Preloader styles */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff; /* background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  opacity: 1;
+  transition: opacity 0.5s ease; /* fade effect */
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.spinner {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff4081;
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+  border-right: .15em solid #ff4081;
+  white-space: nowrap;
+  animation: typing 2s steps(20, end) infinite alternate,
+             blink .7s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#contact {
+  padding: 60px 20px;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+#contact h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#contactForm {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#contactForm input,
+#contactForm textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+}
+
+#contactForm button {
+  background: #ff4081;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#contactForm button:hover {
+  background: #e91e63;
+}
+
+</style>
+</head>
+<body>
+  <!-- Preloader -->
+<div id="preloader">
+  <div class="spinner">NailPolishX</div>
+</div>
+
+
+  <nav>
+    <div class="logo">NailPolishX</div>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#showcase">Gallery</a></li>
+      <li><a href="#footer">Contact</a></li>
+      <button id="darkModeToggle">🌙</button>
+
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <h1 id="heroText"></h1>
+
+    <div class="bottle-wrapper">
+      <img src="bottle-image.png" class="bottle-image" alt="Nail Polish Bottle" />
+      <img src="bottle-cap.png" class="cap-image" id="cap" alt="Nail Polish Cap" />
+    </div>
+    <h1>Experience Elegance with NailPolishX</h1>
+    <p class="tagline">Discover a curated collection of luxurious, vegan-friendly nail colors crafted for lasting beauty.</p>
+    <div class="cta-wrapper">
+  <button class="cta-btn">Shop Now</button>
+</div>
+
+  </section>
+
+  <section id="features">
+    <article class="feature-card">
+      <div class="feature-icon">⏳</div>
+      <h3 class="feature-title">Fast Drying</h3>
+      <p class="feature-desc">Our advanced formula ensures your nails dry quickly and smoothly without smudges.</p>
+    </article>
+    <article class="feature-card">
+      <div class="feature-icon">🌱</div>
+      <h3 class="feature-title">Eco Friendly</h3>
+      <p class="feature-desc">Made from natural, sustainable ingredients that respect you and the planet.</p>
+    </article>
+    <article class="feature-card">
+      <div class="feature-icon">💎</div>
+      <h3 class="feature-title">Long Lasting</h3>
+      <p class="feature-desc">Enjoy brilliant, chip-resistant color that stays vibrant for days.</p>
+    </article>
+    <article class="feature-card">
+      <div class="feature-icon">🐰</div>
+      <h3 class="feature-title">Cruelty Free</h3>
+      <p class="feature-desc">Ethically made, never tested on animals, 100% vegan and safe.</p>
+    </article>
+    <article class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <h3 class="feature-title">Vibrant Colors</h3>
+      <p class="feature-desc">A wide range of highly pigmented colors to brighten your nails.</p>
+    </article>
+    <article class="feature-card">
+      <div class="feature-icon">💧</div>
+      <h3 class="feature-title">Nail Care Formula</h3>
+      <p class="feature-desc">Enriched with vitamins and minerals to strengthen and nourish nails.</p>
+    </article>
+  </section>
+
+  <section id="showcase">
+    <article class="product-card">
+      <img src="palette.jpg" alt="Variety of nail polish colors" class="product-image" />
+      <div class="color-swatch"></div>
+      <p class="product-description">A vibrant palette from classic reds to bold pinks and serene pastels.</p>
+    </article>
+    <article class="product-card">
+      <img src="almond.png" alt="Nail polish application close up" class="product-image" />
+      <p class="product-description">Smooth application with ergonomic brushes designed for precision and ease.</p>
+    </article>
+    <article class="product-card">
+      <img src="hand.jpg" alt="Hand showcasing nails with polish" class="product-image" />
+      <p class="product-description">A flawless finish that shines with every gesture, made to impress.</p>
+    </article>
+  </section>
+  <section id="stats">
+  <div class="stats">
+    <div><span class="counter" data-target="5000">0</span>+ Customers</div>
+    <div><span class="counter" data-target="100">0</span>+ Colors</div>
+  </div>
+</section>
+
+ <!-- Shop Now Section -->
+<section id="shop">
+  <h2 style="text-align:center; font-family: 'Playfair Display', serif; font-size:2.5rem; color:#6a256d; margin-bottom:2rem;">Shop Now</h2>
+  <div class="shop-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2rem; max-width:1140px; margin:0 auto; padding:0 2rem;">
+    
+    <!-- Aesthetics -->
+    <article class="product-card">
+      <img src="aesthetics.jpg" alt="Aesthetics Nail Collection" class="product-image" />
+      <p class="product-description">Soft and chic nail colors that define elegance and style.</p>
+      <button class="cta-btn" style="margin:0 auto 1rem;">Explore More</button>
+    </article>
+
+    <!-- Metallic -->
+    <article class="product-card">
+      <img src="mettalic.png" alt="Metallic Nail Collection" class="product-image" />
+      <p class="product-description">Shiny, reflective metallic shades to make your nails pop.</p>
+      <button class="cta-btn" style="margin:0 auto 1rem;">Explore More</button>
+    </article>
+
+    <!-- Glitter -->
+    <article class="product-card">
+      <img src="glitter.png" alt="Glitter Nail Collection" class="product-image" />
+      <p class="product-description">Sparkling glitter finishes for dazzling and glamorous nails.</p>
+      <button class="cta-btn" style="margin:0 auto 1rem;">Explore More</button>
+    </article>
+
+  </div>
+</section>
+
+
+  <section id="testimonials" style="padding: 4rem 2rem; background: linear-gradient(90deg, #fdf0f7, #fcefee); text-align:center; position:relative;">
+  <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color:#6a256d; margin-bottom:2rem;">What Our Customers Say</h2>
+
+  <div class="testimonial-carousel-wrapper" style="position:relative;">
+
+    <!-- Left Button -->
+    <button class="carousel-btn left" style="position:absolute; left:0; top:50%; transform:translateY(-50%); background:#b76ba3; border:none; color:white; font-size:1.5rem; width:40px; height:40px; border-radius:50%; cursor:pointer; z-index:10;">‹</button>
+
+    <!-- Carousel -->
+    <div class="testimonial-carousel">
+
+      <!-- Testimonial 1 -->
+      <article class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya S.">
+        <h3>Priya S.</h3>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <p>"Absolutely love these nail polishes! The colors are rich and last long."</p>
+      </article>
+
+      <!-- Testimonial 2 -->
+      <article class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Amit K.">
+        <h3>Amit K.</h3>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Fast delivery and amazing packaging. My wife loved the gift set!"</p>
+      </article>
+
+      <!-- Testimonial 3 -->
+      <article class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Neha R.">
+        <h3>Neha R.</h3>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <p>"The pastel collection is my absolute favorite. So classy and smooth."</p>
+      </article>
+
+      <!-- Testimonial 4 -->
+      <article class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rahul D.">
+        <h3>Rahul D.</h3>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Bought for my sister, she was thrilled with the vibrant shades."</p>
+      </article>
+
+      <!-- Testimonial 5 -->
+      <article class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/women/39.jpg" alt="Simran L.">
+        <h3>Simran L.</h3>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Long-lasting and chip-free polish. I got so many compliments."</p>
+      </article>
+
+      <!-- Testimonial 6 -->
+      <article class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Ananya M.">
+        <h3>Ananya M.</h3>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <p>"I love how smooth the polish applies. The brush is perfect too!"</p>
+      </article>
+
+      <!-- Testimonial 7 -->
+      <article class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Karan J.">
+        <h3>Karan J.</h3>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Customer service was quick and very helpful with my queries."</p>
+      </article>
+
+      <!-- Testimonial 8 -->
+      <article class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="Ritika P.">
+        <h3>Ritika P.</h3>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"These shades are exactly what I wanted for my wedding week."</p>
+      </article>
+
+      <!-- Testimonial 9 -->
+      <article class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/men/61.jpg" alt="Siddharth V.">
+        <h3>Siddharth V.</h3>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <p>"Gifted a set to my mom, and she hasn’t stopped using them since."</p>
+      </article>
+
+      <!-- Testimonial 10 -->
+      <article class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/women/77.jpg" alt="Ishita G.">
+        <h3>Ishita G.</h3>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"High quality and beautiful colors. My go-to brand from now on."</p>
+      </article>
+
+    </div>
+
+    <!-- Right Button -->
+    <button class="carousel-btn right" style="position:absolute; right:0; top:50%; transform:translateY(-50%); background:#b76ba3; border:none; color:white; font-size:1.5rem; width:40px; height:40px; border-radius:50%; cursor:pointer; z-index:10;">›</button>
+  </div>
+</section>
+
+    <button class="carousel-btn right" style="position:absolute; right:0; top:50%; transform:translateY(-50%); background:#b76ba3; border:none; color:white; font-size:1.5rem; width:40px; height:40px; border-radius:50%; cursor:pointer; z-index:10;">›</button>
+  </div>
+  <button class="carousel-btn right" 
+  style="position:absolute; right:0; top:50%; transform:translateY(-50%);
+  background:#b76ba3; border:none; color:white; font-size:1.5rem;
+  width:40px; height:40px; border-radius:50%; cursor:pointer; z-index:10;">›</button>
+
+</section>
+
+<script>
+  const carousel = document.querySelector('.testimonial-carousel');
+  const leftBtn = document.querySelector('.carousel-btn.left');
+  const rightBtn = document.querySelector('.carousel-btn.right');
+
+  // Scroll distance per click
+  const scrollAmount = 320;
+
+  leftBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  rightBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  // Auto-scroll
+  let autoScroll = setInterval(() => {
+    if(carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth){
+      carousel.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }, 4000);
+
+  // Pause auto-scroll on hover
+  carousel.addEventListener('mouseenter', () => clearInterval(autoScroll));
+  carousel.addEventListener('mouseleave', () => {
+    autoScroll = setInterval(() => {
+      if(carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth){
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }, 4000);
+  });
+  
+
+</script>
+
+<script>
+  // Optional: hover scale effect for carousel cards
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  testimonialCards.forEach(card => {
+    card.addEventListener('mouseenter', () => card.style.transform = 'scale(1.05)');
+    card.addEventListener('mouseleave', () => card.style.transform = 'scale(1)');
+  });
+</script>
+<!-- After Showcase or Testimonials -->
+<section id="subscribe" style="text-align:center; padding:4rem 2rem; background:#fdf0f7; border-radius:20px; margin:2rem;">
+  <h2 style="font-family:'Playfair Display', serif; font-size:2rem; color:#6a256d; margin-bottom:1.5rem;">
+    Join Our Nail Lovers Community
+  </h2>
+  <input type="email" placeholder="Enter your email" 
+         style="padding:0.8rem 1rem; font-size:1rem; border-radius:50px; border:1px solid #b76ba3; width:250px; max-width:80%; margin-right:0.5rem;">
+  <button style="padding:0.8rem 2rem; border:none; border-radius:50px; background:#b76ba3; color:white; font-weight:600; cursor:pointer;">
+    Subscribe
+  </button>
+</section>
+
+<section class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <button class="faq-question">What is your return policy?</button>
+    <div class="faq-answer">
+      <p>We accept returns within 30 days of purchase. Items must be unused and in original packaging.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Do you ship internationally?</button>
+    <div class="faq-answer">
+      <p>Yes! We ship to most countries. Shipping charges may vary.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">How long does delivery take?</button>
+    <div class="faq-answer">
+      <p>Delivery usually takes 3–7 business days depending on your location.</p>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <h2>Contact Us</h2>
+  <form id="contactForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+
+
+  <footer id="footer">
+   
+    <section class="contact-info">
+      <p><strong>Email:</strong> support@nailpolishx.com</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+<div class="social-icons">
+  <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+<a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+<a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+
+</div>
+</section>
+    <small>© 2025 NailPolishX. All rights reserved.</small>
+  </footer>
+
+  <script>
+    const cap = document.getElementById('cap');
+    const container = document.querySelector('.bottle-wrapper');
+
+    function scrollCapOpen() {
+      const rect = container.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      let progress = 0;
+      if (rect.top < windowHeight && rect.bottom > 0) {
+        progress = 1 - (rect.top / windowHeight);
+        progress = Math.min(Math.max(progress, 0), 1);
+      }
+      const rotateDeg = -65 * progress;
+      cap.style.setProperty('--rotate', `rotate(${rotateDeg}deg)`);
+    }
+
+    window.addEventListener('scroll', scrollCapOpen);
+    window.addEventListener('resize', scrollCapOpen);
+    scrollCapOpen();
+
+    // Animate feature cards one by one on scroll (repeats every time)
+    const featureCards = document.querySelectorAll('.feature-card');
+    const featureObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Array.from(featureCards).indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('in-view');
+          }, index * 200);
+        } else {
+          entry.target.classList.remove('in-view');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    featureCards.forEach(card => featureObserver.observe(card));
+
+    // Animate product cards in gallery one by one on scroll (repeats every time)
+    const productCards = document.querySelectorAll('.product-card');
+    const productObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Array.from(productCards).indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('in-view');
+          }, index * 200);
+        } else {
+          entry.target.classList.remove('in-view');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    productCards.forEach(card => productObserver.observe(card));
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const carousel = document.querySelector(".testimonial-carousel");
+  let scrollSpeed = 1; // pixels per interval
+  let autoScroll;
+  let direction = 1; // 1 = forward, -1 = backward
+
+  function startAutoScroll() {
+    autoScroll = setInterval(() => {
+      carousel.scrollLeft += scrollSpeed * direction;
+
+      // Reverse direction at ends
+      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) {
+        direction = -1; // scroll backward
+      } else if (carousel.scrollLeft <= 0) {
+        direction = 1; // scroll forward
+      }
+    }, 20);
+  }
+
+  function stopAutoScroll() {
+    clearInterval(autoScroll);
+  }
+
+  startAutoScroll();
+
+  carousel.addEventListener("mouseenter", stopAutoScroll);
+  carousel.addEventListener("mouseleave", startAutoScroll);
+
+  document.querySelector(".carousel-btn.left").addEventListener("click", () => {
+    carousel.scrollBy({ left: -300, behavior: "smooth" });
+  });
+  document.querySelector(".carousel-btn.right").addEventListener("click", () => {
+    carousel.scrollBy({ left: 300, behavior: "smooth" });
+  });
+});
+</script>
+<script>
+const toggle = document.getElementById('darkModeToggle');
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+});
+</script>
+
+
+<script>
+const counters = document.querySelectorAll('.counter');
+
+const observerOptions = { threshold: 0.5 };
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      counters.forEach(counter => {
+        counter.innerText = '0'; // Reset to 0 each time
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+          const increment = target / 200;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCount, 10);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    }
+  });
+}, observerOptions);
+
+counters.forEach(counter => observer.observe(counter));
+</script>
+
+
+
+<script>
+const heroElements = document.querySelectorAll('.hero-text, .hero-cta');
+const heroObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    } else {
+      entry.target.classList.remove('in-view');
+    }
+  });
+}, { threshold: 0.3 });
+
+heroElements.forEach(el => heroObserver.observe(el));
+
+const footerEl = document.querySelector('footer');
+const footerObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    } else {
+      entry.target.classList.remove('in-view');
+    }
+  });
+}, { threshold: 0.3 });
+
+footerObserver.observe(footerEl);
+</script>
+<!-- Live Chat Widget -->
+<div id="chat-widget">
+  <a href="https://wa.me/919876543210" target="_blank">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="Chat" />
+  </a>
+</div>
+<!-- Your FAQ HTML above -->
+
+<!-- Place JS here -->
+<script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(q => {
+  q.addEventListener('click', () => {
+    const answer = q.nextElementSibling;
+
+    // Toggle max-height for smooth animation
+    if (answer.style.maxHeight) {
+      answer.style.maxHeight = null; // Close
+    } else {
+      // Close all other answers first (optional)
+      document.querySelectorAll('.faq-answer').forEach(a => a.style.maxHeight = null);
+
+      answer.style.maxHeight = answer.scrollHeight + "px"; // Open
+    }
+  });
+});
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  alert("Thank you for contacting us! We will get back to you soon.");
+  this.reset();
+});
+
+</script>
+<div class="discount-bar" id="discountBar">
+  🎉 Limited Offer: Get 20% OFF on all products today!
+  <span class="close-btn" id="closeDiscount">&times;</span>
+</div>
+
+
+
+<button id="scrollToTop">↑</button>
+<script>
+  const scrollBtn = document.getElementById("scrollToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+});
+
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+const text = "Premium Nail Polish ✨";
+let i = 0;
+
+function typeEffect() {
+  if (i < text.length) {
+    document.getElementById("heroText").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 100); // speed of typing
+  }
+}
+
+window.addEventListener("load", function() {
+  const preloader = document.getElementById("preloader");
+
+  // delay 1s so loader is always visible briefly
+  setTimeout(() => {
+    preloader.classList.add("fade-out");
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 500); // wait for fade-out to finish
+  }, 1000); // 1s minimum visible
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const closeBtn = document.getElementById("closeDiscount");
+  const discountBar = document.getElementById("discountBar");
+
+  closeBtn.addEventListener("click", () => {
+    discountBar.style.display = "none";
+  });
+});
+</script>
+
+</body>
+</html>
