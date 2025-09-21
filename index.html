@@ -121,6 +121,8 @@
       background: linear-gradient(90deg, #fcefee 0%, #fce9f2 80%);
       padding: 6rem 2rem 4rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     section#hero h1 {
       font-family: 'Playfair Display', serif;
@@ -128,6 +130,8 @@
       font-weight: 700;
       color: #6a256d;
       margin: 2rem 0 1rem;
+      position: relative;
+      z-index: 1;
     }
     section#hero .tagline {
       font-family: 'Montserrat', sans-serif;
@@ -138,6 +142,8 @@
       margin-left: auto;
       margin-right: auto;
       line-height: 1.6;
+      position: relative;
+      z-index: 1;
     }
 .cta-btn {
   position: relative;
@@ -688,12 +694,19 @@ body {
     margin-bottom: 15px;
   }
 }
-
+.hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
 </style>
 </head>
 <body>
-  <!-- Preloader -->
-<div id="preloader">
+  <div id="preloader">
   <div class="spinner">NailPolishX</div>
 </div>
 
@@ -714,6 +727,7 @@ body {
     <h1 id="heroText"></h1>
 
     <div class="bottle-wrapper">
+      <video src="7794275-uhd_3840_2160_25fps (1).mp4" class="hero-video" autoplay loop muted playsinline></video>
       <img src="bottle-image.png" class="bottle-image" alt="Nail Polish Bottle" />
       <img src="bottle-cap.png" class="cap-image" id="cap" alt="Nail Polish Cap" />
     </div>
@@ -780,26 +794,22 @@ body {
   </div>
 </section>
 
- <!-- Shop Now Section -->
-<section id="shop">
+ <section id="shop">
   <h2 style="text-align:center; font-family: 'Playfair Display', serif; font-size:2.5rem; color:#6a256d; margin-bottom:2rem;">Shop Now</h2>
   <div class="shop-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:2rem; max-width:1140px; margin:0 auto; padding:0 2rem;">
     
-    <!-- Aesthetics -->
     <article class="product-card">
       <img src="aesthetics.jpg" alt="Aesthetics Nail Collection" class="product-image" />
       <p class="product-description">Soft and chic nail colors that define elegance and style.</p>
       <button class="cta-btn" style="margin:0 auto 1rem;">Explore More</button>
     </article>
 
-    <!-- Metallic -->
     <article class="product-card">
       <img src="mettalic.png" alt="Metallic Nail Collection" class="product-image" />
       <p class="product-description">Shiny, reflective metallic shades to make your nails pop.</p>
       <button class="cta-btn" style="margin:0 auto 1rem;">Explore More</button>
     </article>
 
-    <!-- Glitter -->
     <article class="product-card">
       <img src="glitter.png" alt="Glitter Nail Collection" class="product-image" />
       <p class="product-description">Sparkling glitter finishes for dazzling and glamorous nails.</p>
@@ -815,13 +825,10 @@ body {
 
   <div class="testimonial-carousel-wrapper" style="position:relative;">
 
-    <!-- Left Button -->
     <button class="carousel-btn left" style="position:absolute; left:0; top:50%; transform:translateY(-50%); background:#b76ba3; border:none; color:white; font-size:1.5rem; width:40px; height:40px; border-radius:50%; cursor:pointer; z-index:10;">‹</button>
 
-    <!-- Carousel -->
     <div class="testimonial-carousel">
 
-      <!-- Testimonial 1 -->
       <article class="testimonial-card">
         <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya S.">
         <h3>Priya S.</h3>
@@ -829,7 +836,6 @@ body {
         <p>"Absolutely love these nail polishes! The colors are rich and last long."</p>
       </article>
 
-      <!-- Testimonial 2 -->
       <article class="testimonial-card">
         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Amit K.">
         <h3>Amit K.</h3>
@@ -837,7 +843,6 @@ body {
         <p>"Fast delivery and amazing packaging. My wife loved the gift set!"</p>
       </article>
 
-      <!-- Testimonial 3 -->
       <article class="testimonial-card">
         <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Neha R.">
         <h3>Neha R.</h3>
@@ -845,7 +850,6 @@ body {
         <p>"The pastel collection is my absolute favorite. So classy and smooth."</p>
       </article>
 
-      <!-- Testimonial 4 -->
       <article class="testimonial-card">
         <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rahul D.">
         <h3>Rahul D.</h3>
@@ -853,7 +857,6 @@ body {
         <p>"Bought for my sister, she was thrilled with the vibrant shades."</p>
       </article>
 
-      <!-- Testimonial 5 -->
       <article class="testimonial-card">
         <img src="https://randomuser.me/api/portraits/women/39.jpg" alt="Simran L.">
         <h3>Simran L.</h3>
@@ -861,7 +864,6 @@ body {
         <p>"Long-lasting and chip-free polish. I got so many compliments."</p>
       </article>
 
-      <!-- Testimonial 6 -->
       <article class="testimonial-card">
         <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Ananya M.">
         <h3>Ananya M.</h3>
@@ -869,7 +871,6 @@ body {
         <p>"I love how smooth the polish applies. The brush is perfect too!"</p>
       </article>
 
-      <!-- Testimonial 7 -->
       <article class="testimonial-card">
         <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Karan J.">
         <h3>Karan J.</h3>
@@ -877,7 +878,6 @@ body {
         <p>"Customer service was quick and very helpful with my queries."</p>
       </article>
 
-      <!-- Testimonial 8 -->
       <article class="testimonial-card">
         <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="Ritika P.">
         <h3>Ritika P.</h3>
@@ -885,7 +885,6 @@ body {
         <p>"These shades are exactly what I wanted for my wedding week."</p>
       </article>
 
-      <!-- Testimonial 9 -->
       <article class="testimonial-card">
         <img src="https://randomuser.me/api/portraits/men/61.jpg" alt="Siddharth V.">
         <h3>Siddharth V.</h3>
@@ -893,7 +892,6 @@ body {
         <p>"Gifted a set to my mom, and she hasn’t stopped using them since."</p>
       </article>
 
-      <!-- Testimonial 10 -->
       <article class="testimonial-card">
         <img src="https://randomuser.me/api/portraits/women/77.jpg" alt="Ishita G.">
         <h3>Ishita G.</h3>
@@ -903,7 +901,6 @@ body {
 
     </div>
 
-    <!-- Right Button -->
     <button class="carousel-btn right" style="position:absolute; right:0; top:50%; transform:translateY(-50%); background:#b76ba3; border:none; color:white; font-size:1.5rem; width:40px; height:40px; border-radius:50%; cursor:pointer; z-index:10;">›</button>
   </div>
 </section>
@@ -965,7 +962,6 @@ body {
     card.addEventListener('mouseleave', () => card.style.transform = 'scale(1)');
   });
 </script>
-<!-- After Showcase or Testimonials -->
 <section id="subscribe" style="text-align:center; padding:4rem 2rem; background:#fdf0f7; border-radius:20px; margin:2rem;">
   <h2 style="font-family:'Playfair Display', serif; font-size:2rem; color:#6a256d; margin-bottom:1.5rem;">
     Join Our Nail Lovers Community
@@ -1187,15 +1183,11 @@ const footerObserver = new IntersectionObserver((entries) => {
 
 footerObserver.observe(footerEl);
 </script>
-<!-- Live Chat Widget -->
 <div id="chat-widget">
   <a href="https://wa.me/919876543210" target="_blank">
     <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="Chat" />
   </a>
 </div>
-<!-- Your FAQ HTML above -->
-
-<!-- Place JS here -->
 <script>
 const faqQuestions = document.querySelectorAll('.faq-question');
 
